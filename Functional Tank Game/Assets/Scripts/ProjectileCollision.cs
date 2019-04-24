@@ -56,38 +56,34 @@ public class ProjectileCollision : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Ground"))
         {
+
+            GameObject expl = Instantiate(explosion, transform.position, Quaternion.identity) as GameObject;
+            Destroy(expl, 1); // delete the explosion after 3 seconds
             Destroy(gameObject, Impactdelay);
             IsDestroyed = true;
-            GameObject expl = Instantiate(explosion, transform.position, Quaternion.identity) as GameObject;
-            Destroy(expl, 0.75f); // delete the explosion after 3 seconds
-            Destroy(gameObject, Impactdelay);
         }
         else if(other.gameObject.CompareTag("Wall"))
         {
-            Destroy(gameObject, Impactdelay);
-            IsDestroyed = true;
 
             GameObject expl = Instantiate(explosion, transform.position, Quaternion.identity) as GameObject;
-            Destroy(expl, 0.75f); // delete the explosion after 3 seconds
+            Destroy(expl, 1); // delete the explosion after 3 seconds
             Destroy(gameObject, Impactdelay);
+            IsDestroyed = true;
         }
         else if(other.gameObject.CompareTag("PlayerTank1"))
         {
+            GameObject expl = Instantiate(explosion, transform.position, Quaternion.identity) as GameObject;
+            Destroy(expl, 1); // delete the explosion after 3 seconds
             Destroy(gameObject, Impactdelay);
             IsDestroyed = true;
-
-            GameObject expl = Instantiate(explosion, transform.position, Quaternion.identity) as GameObject;
-            Destroy(expl, 0.75f); // delete the explosion after 3 seconds
-            Destroy(gameObject, Impactdelay);
         }
         else if (other.gameObject.CompareTag("PlayerTank2"))
         {
-            Destroy(gameObject, Impactdelay);
-            IsDestroyed = true;
 
             GameObject expl = Instantiate(explosion, transform.position, Quaternion.identity) as GameObject;
-            Destroy(expl, 0.75f); // delete the explosion after 3 seconds
+            Destroy(expl, 1); // delete the explosion after 3 seconds
             Destroy(gameObject, Impactdelay);
+            IsDestroyed = true;
         }
 
     }
