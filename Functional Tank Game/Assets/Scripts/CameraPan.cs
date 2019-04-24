@@ -90,6 +90,10 @@ public class CameraPan : MonoBehaviour
         // setting the postition markers for the camera
         gameObject.transform.position = center;
 
+
+
+
+
         /* possibly not neccesary */
         //calcScreen(tank1, tank2);
         //wScene = xR - xL;
