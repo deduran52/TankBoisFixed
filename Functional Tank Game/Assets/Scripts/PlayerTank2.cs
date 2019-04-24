@@ -108,7 +108,7 @@ public class PlayerTank2 : MonoBehaviour
         }
 
     }
-
+    public GameObject explosion; // drag your explosion prefab here
     /* Damage Detection */
     void OnCollisionEnter2D(Collision2D coll)
     {

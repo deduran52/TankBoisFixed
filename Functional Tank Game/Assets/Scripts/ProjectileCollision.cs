@@ -15,6 +15,7 @@ public class ProjectileCollision : MonoBehaviour
 
     /* Delay timer */
     public float delayTimer;
+    public GameObject explosion; // drag your explosion prefab here
 
     public void Start()
     {
@@ -57,21 +58,36 @@ public class ProjectileCollision : MonoBehaviour
         {
             Destroy(gameObject, Impactdelay);
             IsDestroyed = true;
+            GameObject expl = Instantiate(explosion, transform.position, Quaternion.identity) as GameObject;
+            Destroy(expl, 0.75f); // delete the explosion after 3 seconds
+            Destroy(gameObject, Impactdelay);
         }
         else if(other.gameObject.CompareTag("Wall"))
         {
             Destroy(gameObject, Impactdelay);
             IsDestroyed = true;
+
+            GameObject expl = Instantiate(explosion, transform.position, Quaternion.identity) as GameObject;
+            Destroy(expl, 0.75f); // delete the explosion after 3 seconds
+            Destroy(gameObject, Impactdelay);
         }
         else if(other.gameObject.CompareTag("PlayerTank1"))
         {
             Destroy(gameObject, Impactdelay);
             IsDestroyed = true;
+
+            GameObject expl = Instantiate(explosion, transform.position, Quaternion.identity) as GameObject;
+            Destroy(expl, 0.75f); // delete the explosion after 3 seconds
+            Destroy(gameObject, Impactdelay);
         }
         else if (other.gameObject.CompareTag("PlayerTank2"))
         {
             Destroy(gameObject, Impactdelay);
             IsDestroyed = true;
+
+            GameObject expl = Instantiate(explosion, transform.position, Quaternion.identity) as GameObject;
+            Destroy(expl, 0.75f); // delete the explosion after 3 seconds
+            Destroy(gameObject, Impactdelay);
         }
 
     }
