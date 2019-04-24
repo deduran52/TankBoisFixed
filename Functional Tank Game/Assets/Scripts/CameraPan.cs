@@ -77,6 +77,19 @@ public class CameraPan : MonoBehaviour
         tank1 = GameObject.FindWithTag("PlayerTank1").transform;
         tank2 = GameObject.FindWithTag("PlayerTank2").transform;
 
+
+        /* setting the position of tank 1 as the start point for the camera */
+        // Setting the current position of the tank
+        xPos = player1.transform.position.x + 5;
+        yPos = 3;
+        zPos = transform.position.z;
+
+        // inputing the variables into a vector for quick input
+        center = new Vector3(xPos, yPos, zPos);
+
+        // setting the postition markers for the camera
+        gameObject.transform.position = center;
+
         /* possibly not neccesary */
         //calcScreen(tank1, tank2);
         //wScene = xR - xL;
