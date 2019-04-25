@@ -16,15 +16,14 @@ public class ProjectileCollision : MonoBehaviour
 
     /* Delay timer */
     public float delayTimer;
-<<<<<<< Updated upstream
+
 
     public GameObject explosion; // drag your explosion prefab here
-=======
-    public GameObject explosion; // drag your explosion prefab here
+
     public GameObject tilemapGameObject;
 
     Tilemap tilemap;
->>>>>>> Stashed changes
+
 
     public void Start()
     {
@@ -77,7 +76,14 @@ public class ProjectileCollision : MonoBehaviour
             Destroy(expl, 1); // delete the explosion after 1 seconds
             Destroy(gameObject, Impactdelay);
             IsDestroyed = true;
-<<<<<<< Updated upstream
+            foreach (ContactPoint2D hit in other.contacts)
+            {
+                hitPosition.x = hit.point.x;
+                hitPosition.y = hit.point.y;
+                TileDestructionLoop(hitPosition);
+
+            }
+
         }
 
         else if(other.gameObject.CompareTag("Wall"))
@@ -104,47 +110,9 @@ public class ProjectileCollision : MonoBehaviour
             Destroy(expl, 1); // delete the explosion after 1 seconds
             Destroy(gameObject, Impactdelay);
             IsDestroyed = true;
-=======
 
-
-                foreach (ContactPoint2D hit in other.contacts)
-                {
-                    hitPosition.x = hit.point.x;
-                    hitPosition.y = hit.point.y;
-                    TileDestructionLoop(hitPosition);
-                    
-                }
             
         }
-
-
-
-        else if (other.gameObject.CompareTag("Wall"))
-        {
-
-            GameObject expl = Instantiate(explosion, transform.position, Quaternion.identity) as GameObject;
-            Destroy(expl, 1); // delete the explosion after 3 seconds
-            Destroy(gameObject, Impactdelay);
-            IsDestroyed = true;
-        }
-        else if (other.gameObject.CompareTag("PlayerTank1"))
-        {
-            GameObject expl = Instantiate(explosion, transform.position, Quaternion.identity) as GameObject;
-            Destroy(expl, 1); // delete the explosion after 3 seconds
-            Destroy(gameObject, Impactdelay);
-            IsDestroyed = true;
-        }
-        else if (other.gameObject.CompareTag("PlayerTank2"))
-        {
-
-            GameObject expl = Instantiate(explosion, transform.position, Quaternion.identity) as GameObject;
-            Destroy(expl, 1); // delete the explosion after 3 seconds
-            Destroy(gameObject, Impactdelay);
-            IsDestroyed = true;
->>>>>>> Stashed changes
-        }
-
- 
 
     }
 
