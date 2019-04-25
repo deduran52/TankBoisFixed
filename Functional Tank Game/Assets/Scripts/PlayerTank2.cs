@@ -27,6 +27,7 @@ public class PlayerTank2 : MonoBehaviour
     public float projectileSpeed = 250;
     public float impactDelay;
     public float bulletDamage = 10;
+    public float explosionDamage = 5;
     public bool firedProjectile;
 
     /* Turret Rotation */
@@ -127,6 +128,15 @@ public class PlayerTank2 : MonoBehaviour
             if (currentHealth == 0)
                 Destroy(gameObject);
 
+        }
+        else if (coll.gameObject.CompareTag("Explosion"))
+        {
+            currentHealth = currentHealth - explosionDamage;
+            if (currentHealth == 0)
+            {
+                Destroy(gameObject);
+                isDestroyed = true;
+            }
         }
     }
 }

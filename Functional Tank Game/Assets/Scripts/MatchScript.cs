@@ -11,6 +11,11 @@ public class MatchScript : MonoBehaviour
     private int displayTime;
     public Text timerText;
 
+    /* Camera variables and objects */
+    public Camera camera1;
+    public Camera camera2;
+    public float waitTime;
+
     /* player1 timer variables */
     public float p1Time;
     public int p1DisplayTime;
@@ -30,18 +35,26 @@ public class MatchScript : MonoBehaviour
     public int startTimerDisplay;
     public Text startTimerDis;
 
+    /* PlayerTank and bullet scripts */
     public PlayerTank1 player1;
     public PlayerTank2 player2;
     public ProjectileCollision bullet;
 
+    /* Win Text varaible */
     public Text winText;
 
+    /* End of match variables */
     public float disableTimeText;
     public float returnToTitle;
 
+    /* Animator Varaibles */
     public Animator animate;
 
-    public CameraPan camera1;
+    //public CameraPan camera1;
+
+
+    //-----------------------------------------------------------------------------------------------------------------------------
+
 
     // Start is called before the first frame update
     void Start()
@@ -51,7 +64,7 @@ public class MatchScript : MonoBehaviour
         player2 = GameObject.FindWithTag("PlayerTank2").GetComponent<PlayerTank2>();
 
         /* Camera Object */
-        camera1 = GameObject.FindWithTag("MainCamera").GetComponent<CameraPan>();
+        //camera1 = GameObject.FindWithTag("MainCamera").GetComponent<CameraPan>();
 
         /* Match Timer */
         displayTime = (int)matchTime;
@@ -123,7 +136,7 @@ public class MatchScript : MonoBehaviour
                     timerText.text = "0";
 
                 /* Player 1 timer update */
-                if (player1.turnCheck == true && camera1.cameraCheck1 == true)
+                if (player1.turnCheck == true)
                 {
                     p1Time -= Time.deltaTime;
                     p1DisplayTime = (int)p1Time;
@@ -133,7 +146,7 @@ public class MatchScript : MonoBehaviour
                 }
 
                 /* Player 2 timer update */
-                if (player2.turnCheck == true && camera1.cameraCheck2 == true)
+                if (player2.turnCheck == true)
                 {
                     p2Time -= Time.deltaTime;
                     p2DisplayTime = (int)p2Time;
@@ -149,8 +162,8 @@ public class MatchScript : MonoBehaviour
 
                 if (matchTime < 0)
                 {
-                    //player1.enabled = false;
-                    //player2.enabled = false;
+                    player1.enabled = false;
+                    player2.enabled = false;
                     timerText.text = "0";
                     if (matchTime <= disableTimeText)
                     {
@@ -176,8 +189,8 @@ public class MatchScript : MonoBehaviour
             }
             else
             {
-                //player1.enabled = false;
-                //player2.enabled = false;
+                player1.enabled = false;
+                player2.enabled = false;
                 if (player1.currentHealth <= 0 && player2.currentHealth > 0)
                 {
                     winText.text = "Player 2 Wins!";
@@ -209,8 +222,12 @@ public class MatchScript : MonoBehaviour
             player1.turnCheck = true;
         }
 
-        if (player1.turnCheck == true && matchTime > 0 && camera1.cameraCheck1 == true)
+        if (player1.turnCheck == true && matchTime > 0 /*&& camera1.cameraCheck1 == true*/)
         {
+
+            camera1.enabled = true;
+            camera2.enabled = false;
+
             p2Time = player2.turnTime;
             player2.turnCheck = false;
             player2.firedProjectile = false;
@@ -226,8 +243,12 @@ public class MatchScript : MonoBehaviour
             }
         }
 
-        if (player2.turnCheck == true && matchTime > 0 && camera1.cameraCheck2 == true)
+        if (player2.turnCheck == true && matchTime > 0 /*&& camera1.cameraCheck2 == true*/)
         {
+
+            camera1.enabled = false;
+            camera2.enabled = true;
+
             p1Time = player1.turnTime;
             player1.turnCheck = false;
             player1.firedProjectile = false;

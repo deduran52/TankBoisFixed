@@ -197,6 +197,79 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 479583553}
   m_CullTransparentMesh: 0
+--- !u!1 &877552192
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 877552193}
+  - component: {fileID: 877552194}
+  m_Layer: 0
+  m_Name: Camera2
+  m_TagString: MainCamera
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &877552193
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 877552192}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 6, y: 2.4, z: -20}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3252970403407438408}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!20 &877552194
+Camera:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 877552192}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_ClearFlags: 1
+  m_BackGroundColor: {r: 0.47912958, g: 0.6486714, b: 0.9150943, a: 0}
+  m_projectionMatrixMode: 1
+  m_SensorSize: {x: 36, y: 24}
+  m_LensShift: {x: 0, y: 0}
+  m_GateFitMode: 2
+  m_FocalLength: 50
+  m_NormalizedViewPortRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+  near clip plane: 0.3
+  far clip plane: 1000
+  field of view: 5
+  orthographic: 1
+  orthographic size: 4
+  m_Depth: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RenderingPath: -1
+  m_TargetTexture: {fileID: 0}
+  m_TargetDisplay: 0
+  m_TargetEye: 3
+  m_HDR: 1
+  m_AllowMSAA: 1
+  m_AllowDynamicResolution: 0
+  m_ForceIntoRT: 0
+  m_OcclusionCulling: 1
+  m_StereoConvergence: 10
+  m_StereoSeparation: 0.022
 --- !u!1 &882652263 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6445330961993693814, guid: aa990a79d72c36d438004e73d30b2b31,
@@ -480,6 +553,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   matchTime: 100
   timerText: {fileID: 479583555}
+  camera1: {fileID: 1981835815}
+  camera2: {fileID: 877552194}
+  waitTime: 0
   p1Time: 0
   p1DisplayTime: 0
   Player1Timer: {fileID: 1945297203}
@@ -497,7 +573,6 @@ MonoBehaviour:
   disableTimeText: 0
   returnToTitle: -3
   animate: {fileID: 0}
-  camera1: {fileID: 0}
 --- !u!1 &1268749801
 GameObject:
   m_ObjectHideFlags: 0
@@ -667,7 +742,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!81 &1446275360
 AudioListener:
   m_ObjectHideFlags: 0
@@ -1093,6 +1168,79 @@ RectTransform:
   m_AnchoredPosition: {x: 9.950012, y: 9.89502}
   m_SizeDelta: {x: 19.89, y: 19.69}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1981835813
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1981835814}
+  - component: {fileID: 1981835815}
+  m_Layer: 0
+  m_Name: Camera1
+  m_TagString: MainCamera
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1981835814
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1981835813}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 4, y: 2, z: -30}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 9164597105054090702}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!20 &1981835815
+Camera:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1981835813}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_ClearFlags: 1
+  m_BackGroundColor: {r: 0.47912958, g: 0.6486714, b: 0.9150943, a: 0}
+  m_projectionMatrixMode: 1
+  m_SensorSize: {x: 36, y: 24}
+  m_LensShift: {x: 0, y: 0}
+  m_GateFitMode: 2
+  m_FocalLength: 50
+  m_NormalizedViewPortRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+  near clip plane: 0.3
+  far clip plane: 1000
+  field of view: 5
+  orthographic: 1
+  orthographic size: 4
+  m_Depth: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RenderingPath: -1
+  m_TargetTexture: {fileID: 0}
+  m_TargetDisplay: 0
+  m_TargetEye: 3
+  m_HDR: 1
+  m_AllowMSAA: 1
+  m_AllowDynamicResolution: 0
+  m_ForceIntoRT: 0
+  m_OcclusionCulling: 1
+  m_StereoConvergence: 10
+  m_StereoSeparation: 0.022
 --- !u!1001 &3252970403407438404
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1113,7 +1261,7 @@ PrefabInstance:
     - target: {fileID: 3252970404094711386, guid: 7df48da5063689044be59318923f9041,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 79.65
+      value: -1.71
       objectReference: {fileID: 0}
     - target: {fileID: 3252970404094711386, guid: 7df48da5063689044be59318923f9041,
         type: 3}
@@ -1265,6 +1413,12 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!4 &3252970403407438408 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3252970404094711386, guid: 7df48da5063689044be59318923f9041,
+    type: 3}
+  m_PrefabInstance: {fileID: 3252970403407438404}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &3252970403407438409
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1291,6 +1445,7 @@ MonoBehaviour:
   projectileSpeed: 250
   impactDelay: 0
   bulletDamage: 10
+  explosionDamage: 5
   firedProjectile: 0
   turretRotation: {fileID: 1382981826}
   turretAngle: 1
@@ -1466,9 +1621,16 @@ MonoBehaviour:
   projectileSpeed: 250
   impactDelay: 1
   bulletDamage: 10
+  explosionDamage: 5
   firedProjectile: 0
   turretRotation: {fileID: 882652263}
   turretAngle: 1
   isDestroyed: 0
   explosion: {fileID: 2075580611082321706, guid: cb6bbec9b72ee2b469511cebf0e1396b,
     type: 3}
+--- !u!4 &9164597105054090702 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3834667712156599858, guid: aa990a79d72c36d438004e73d30b2b31,
+    type: 3}
+  m_PrefabInstance: {fileID: 4843577459808891152}
+  m_PrefabAsset: {fileID: 0}

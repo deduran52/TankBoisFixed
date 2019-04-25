@@ -116,7 +116,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c880436da701c964098496178be07804, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Impactdelay: 0.5
+  Impactdelay: 0.1
   IsDestroyed: 0
   delayTimer: 0
   explosion: {fileID: 2075580611082321706, guid: cb6bbec9b72ee2b469511cebf0e1396b,
