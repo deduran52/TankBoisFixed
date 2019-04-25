@@ -11,6 +11,7 @@ TagManager:
   - Ground
   - PlayerTank1
   - PlayerTank2
+  - tilemap
   layers:
   - Default
   - TransparentFX

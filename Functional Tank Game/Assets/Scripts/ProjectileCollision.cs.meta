@@ -3,7 +3,10 @@ guid: c880436da701c964098496178be07804
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - explosion: {instanceID: 0}
+  - tilemapGameObject: {fileID: 2705714509947601949, guid: baf0462e8f3b2c94995bbd2d14543c49,
+      type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
