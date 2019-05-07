@@ -37,6 +37,9 @@ public class PlayerTank2 : MonoBehaviour
     /* Destroyed Tank Flag */
     public bool isDestroyed;
 
+    /* Reset Variables */
+    //public bool resetUse;                                                            // Need to get this uncommented one the function is working
+
     // Start is called before the first frame update
     void Start()
     {
@@ -52,15 +55,6 @@ public class PlayerTank2 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        /* Movement Complete */
-        /*
-        if (turnCheck == true && (Input.GetKey(KeyCode.A) == true || Input.GetKey(KeyCode.D) == true || Input.GetKey(KeyCode.LeftArrow) == true || Input.GetKey(KeyCode.RightArrow) == true))
-        {
-            turnTime -= Time.deltaTime;
-            if (turnTime == 0)
-                movementComplete = true;
-        }
-        */
 
         /* Movement Controls */
         if (Input.GetKey(KeyCode.A) && turnCheck)
@@ -71,6 +65,14 @@ public class PlayerTank2 : MonoBehaviour
         {
             transform.position += Vector3.right * tankSpeed * Time.deltaTime;
         }
+
+        /* Reset Key control */
+        /*
+         if(Input.GetKey(KeyCode.R) && turnCheck && !resetUse)
+         {
+             // reset the position back to original as in back to a upright position.
+         }
+         */
 
         /* Turret Controls */
         else if (Input.GetKey(KeyCode.LeftArrow) && turnCheck)
@@ -116,6 +118,8 @@ public class PlayerTank2 : MonoBehaviour
         /*
          * This may not be needed at the moment !! Do not delete yet !!
          * 
+         * May need to work on this chunk so that it is the same as PlayerTank1
+         * 
         if (coll.gameObject.CompareTag("Ground"))
         {
             isGrounded = true;
@@ -132,6 +136,7 @@ public class PlayerTank2 : MonoBehaviour
         else if (coll.gameObject.CompareTag("Explosion"))
         {
             currentHealth = currentHealth - explosionDamage;
+                                                                                                // Add health bar modifier here
             if (currentHealth == 0)
             {
                 Destroy(gameObject);

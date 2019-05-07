@@ -11,7 +11,6 @@ public class PlayerTank1 : MonoBehaviour
 
     /* Turn Variable */
     public bool turnCheck;
-    public bool movementComplete;
     public float turnTime = 10;
 
     /* Player Variables */
@@ -36,7 +35,13 @@ public class PlayerTank1 : MonoBehaviour
 
     /* Destroyed Tank Flag */
     public bool isDestroyed;
-    
+
+    /* Explosion Animation */
+    public GameObject explosion;
+
+    /* Reset Variables */
+    //public bool resetUse;                                                            // Need to get this uncommented one the function is working
+
     // Start is called before the first frame update
     void Start()
     {
@@ -52,15 +57,6 @@ public class PlayerTank1 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        /* Movement Complete */
-        /*
-        if (turnCheck == true && (Input.GetKey(KeyCode.A) == true || Input.GetKey(KeyCode.D) == true || Input.GetKey(KeyCode.LeftArrow) == true || Input.GetKey(KeyCode.RightArrow) == true))
-        {
-            turnTime -= Time.deltaTime;
-            if (turnTime == 0)
-                movementComplete = true;
-        }
-        */
 
         /* Movement Controls */
         if (Input.GetKey(KeyCode.A) && turnCheck)
@@ -71,6 +67,14 @@ public class PlayerTank1 : MonoBehaviour
         {
             transform.position += Vector3.right * tankSpeed * Time.deltaTime;
         }
+
+        /* Reset Key control */
+        /*
+         if(Input.GetKey(KeyCode.R) && turnCheck && !resetUse)
+         {
+             // reset the position back to original as in back to a upright position.
+         }
+         */
 
         /* Turret Controls */
         else if (Input.GetKey(KeyCode.LeftArrow) && turnCheck)
@@ -110,13 +114,15 @@ public class PlayerTank1 : MonoBehaviour
         
         
     }
-    public GameObject explosion; // drag your explosion prefab here
 
     /* Damage Detection */
     void OnCollisionEnter2D(Collision2D coll)
     {
         /*
          * This may not be needed at the moment !! Do not delete yet !!
+         * 
+         * This may need to be changed to ground detection so that you can reset your position if you happen to fall on your side.
+         * This will be a delayed action in which you would be able to do anything until the you are right side up again
          * 
         if (coll.gameObject.CompareTag("Ground"))
         {
@@ -126,7 +132,7 @@ public class PlayerTank1 : MonoBehaviour
         if (coll.gameObject.CompareTag("Bullet"))
         {
             currentHealth = currentHealth - bulletDamage;
-            //healthBar.setSize(currentHealth / 10);
+            //healthBar.setSize(currentHealth / 10);                                 // Need to get this working like today
             if (currentHealth == 0)
             {
                 Destroy(gameObject);
@@ -136,6 +142,7 @@ public class PlayerTank1 : MonoBehaviour
         else if (coll.gameObject.CompareTag("Explosion"))
         {
             currentHealth = currentHealth - explosionDamage;
+                                                                                    // Need to add another health bar modifier here.
             if(currentHealth == 0)
             {
                 Destroy(gameObject);

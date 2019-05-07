@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
+﻿using UnityEngine;
 
 
 public class CameraPan : MonoBehaviour
@@ -12,6 +9,11 @@ public class CameraPan : MonoBehaviour
     ProjectileCollision Bullet;
     MatchScript match;
 
+    /* Camera variables */
+    public Camera player1Camera;
+    public Camera player2Camera;
+    public Camera bulletCamera;
+
     /* Variables to get the position of the player objects */
     Transform tank1;
     Transform tank2;
@@ -21,51 +23,17 @@ public class CameraPan : MonoBehaviour
     float yPos;                // y position
     float zPos;                // z position
 
-    /* Vector variable so to store the above three position vairable into */
-    Vector3 center;
-
     /* Check variables */
     public bool cameraCheck1 = false;
     public bool cameraCheck2 = false;
 
     /* Delay variable */
-    float currentTime = Time.deltaTime;
-    public float delayTime = 2;
+    public float baseTimer = 5;
+    public float timer1;
+    public float timer2;
+    
 
-
-
-
-
-    /* These variables bellow may not be need to but I am not sure at the moment */
-    float margin = 0.001f;
-
-    float z0 = 0f;
-    float zCam;
-    float wScene;
-    float xL;
-    float xR;
     /*---------------------------------------------------------------*/
-
-
-
-    // Start is called before the first frame update
-    /*
-    void calcScreen(Transform p1, Transform p2)
-    {
-        // Calculates the xL and xR screen coordinates 
-        if (p1.position.x < p2.position.x)
-        {
-            xL = p1.position.x - margin;
-            xR = p2.position.x + margin;
-        }
-        else
-        {
-            xL = p2.position.x - margin;
-            xR = p1.position.x + margin;
-        }
-    }
-    */
-    //---------------------------------------------------------------------------------------------------------------------
 
     void Start()
     {
@@ -74,39 +42,18 @@ public class CameraPan : MonoBehaviour
         player2 = GameObject.FindWithTag("PlayerTank2").GetComponent<PlayerTank2>();
 
         /* this is instantiating the bullet object as an accesable variable */
-        Bullet = GameObject.FindWithTag("Bullet").GetComponent<ProjectileCollision>();
+        //Bullet = GameObject.FindWithTag("Bullet").GetComponent<ProjectileCollision>();            
 
         /* instantiating the match script as a variable */
+        match = GameObject.FindWithTag("GameController").GetComponent<MatchScript>();
 
         /* Instatiating variables to access the postitions of the tanks */
         tank1 = GameObject.FindWithTag("PlayerTank1").transform;
         tank2 = GameObject.FindWithTag("PlayerTank2").transform;
 
-
-        /* setting the position of tank 1 as the start point for the camera */
-        /*
-        // updating the cameraChecks to make sure they are in the appropriet position
-        cameraCheck1 = true;
-        cameraCheck2 = false;
-        // Setting the current position of the tank
-        xPos = player1.transform.position.x + 5;
-        yPos = 3;
-        zPos = transform.position.z;
-
-        // inputing the variables into a vector for quick input
-        center = new Vector3(xPos, yPos, zPos);
-
-        // setting the postition markers for the camera
-        gameObject.transform.position = center;
-
-        */
-
-
-
-        /* possibly not neccesary */
-        //calcScreen(tank1, tank2);
-        //wScene = xR - xL;
-        //zCam = transform.position.z - z0;
+        /* setting the projectile timers */
+        timer1 = baseTimer;
+        timer2 = baseTimer;
 
     } // end void start
 
@@ -115,7 +62,7 @@ public class CameraPan : MonoBehaviour
     void Update()
     {
         /* Need to up Date every scene since the bullet is not created until it is fired */
-        Bullet = GameObject.FindWithTag("Bullet").GetComponent<ProjectileCollision>();        
+        Bullet = GameObject.FindWithTag("Bullet").GetComponent<ProjectileCollision>();         // Having a hard time determining wheather the object exist or not
 
         //---------------------------------------------------------------------------------------------------
 
@@ -123,122 +70,74 @@ public class CameraPan : MonoBehaviour
         /* Changes camera to the projectile */
         if (Bullet.IsDestroyed == false)
         {
-            // setting both camera checks as false so the bullet is the object being followed 
-            cameraCheck1 = false;
-            cameraCheck2 = false;
+            bulletCamera.enabled = true;                             // Need to change the camera from enabled to something else that will determine
+            player1Camera.enabled = false;                           // wheather the camera is on or not.
+            player2Camera.enabled = false;                           // this line aslo needs to be changed.
 
-            // updating the position of the bullet
+            /* Getting the position for the bullet */
             xPos = Bullet.transform.position.x;
             yPos = Bullet.transform.position.y;
             zPos = transform.position.z;
 
-            // creating a vector for the position markers
-            center = new Vector3(xPos, yPos, zPos);
-
-            // setting the camera to the vector location
-            gameObject.transform.position = center;
-        }
-        
-        //------------------------------------------------------------------------------------------------------
-
-        /* Changes camera to the Player1 */
-        if (player1.turnCheck)
-        {
-            // updating the cameraChecks to make sure they are in the appropriet position
-            cameraCheck1 = false;
-            cameraCheck2 = true;
-
-            // Setting the current position of the tank
-            xPos = player1.transform.position.x + 5;
-            yPos = 3;
-            zPos = transform.position.z;
-
-            // inputing the variables into a vector for quick input
-            center = new Vector3(xPos, yPos, zPos);
-
-            // setting the positition markers for the camera
-            gameObject.transform.position = center;
-
-            /* bullet following camera 
-            if (Bullet.IsDestroyed == false)
-            {
-                // setting both camera checks as false so the bullet is the object being followed 
-                //cameraCheck1 = false;
-                //cameraCheck2 = false;
-
-                // updating the position of the bullet
-                xPos = Bullet.transform.position.x;
-                yPos = Bullet.transform.position.y;
-                zPos = transform.position.z;
-
-                // creating a vector for the position markers
-                center = new Vector3(xPos, yPos, zPos);
-
-                // setting the camera to the vector location
-                gameObject.transform.position = center;
-            }
-            */
-        }
-
-        //--------------------------------------------------------------------------------------------------------
-
-        /* Changes the camera to Player2 */
-        if (player2.turnCheck)
-        {
-            // updating camera checks to be in the appropriet position
-            cameraCheck1 = true;
-            cameraCheck2 = false;
-
-            // setting the current position of the tank
-            xPos = player2.transform.position.x + 5;
-            yPos = 3;
-            zPos = transform.position.z;
-
-            // inputing the position variable into a vector for quick input
-
             // setting the postion of the camera with the vector
-            center = new Vector3(xPos, yPos, zPos);
+            Vector3 center = new Vector3(xPos, yPos, zPos);
 
             // setting the position marker for the camera
-            gameObject.transform.position = center;
+            bulletCamera.transform.position = center;
 
-            
-            /* bullet following camera 
-            if (Bullet.IsDestroyed == false)
+            if (player1.firedProjectile)
             {
-                // setting both camera checks as false so the bullet is the object being followed 
-                //cameraCheck1 = false;
-                //cameraCheck2 = false;
-
-                // updating the position of the bullet
-                xPos = Bullet.transform.position.x;
-                yPos = Bullet.transform.position.y;
-                zPos = transform.position.z;
-
-                // creating a vector for the position markers
-                center = new Vector3(xPos, yPos, zPos);
-
-                // setting the camera to the vector location
-                gameObject.transform.position = center;
+                player1.turnCheck = false;
+                player2.turnCheck = false;
+                timer1 -= Time.deltaTime;
+                if(timer1 <= 0)
+                {
+                    player1.turnCheck = false;
+                    player2.turnCheck = true;
+                    player1Camera.enabled = false;
+                    player2Camera.enabled = true;
+                    bulletCamera.enabled = false;
+                    timer1 = baseTimer;
+                }
             }
-            */
+
+            if(player2.firedProjectile)
+            {
+                player1.turnCheck = false;
+                player2.turnCheck = false;
+                timer2 -= Time.deltaTime;
+                if(timer2 <= 0)
+                {
+                    player1.turnCheck = true;
+                    player2.turnCheck = false;
+                    player1Camera.enabled = true;
+                    player2Camera.enabled = false;
+                    bulletCamera.enabled = false;
+                    timer2 = baseTimer;
+                }
+            }
+
         }
 
-        //-----------------------------------------------------------------------------------------------------
-
-        /*
-        //calcScreen(tank1, tank2);
-        float width = xR - xL;
-        if (width > wScene)
+        else
         {
-            Vector3 change = new Vector3(transform.position.x, transform.position.y, zCam * width / wScene + z0);
-            transform.position = change;
+            /* setting the player camera to true */
+            if(player1.turnCheck)
+            {
+                player1Camera.enabled = true;
+                player2Camera.enabled = false;
+                bulletCamera.enabled = false;
+            }
+
+            /* setting the player camera to true */
+            else if(player2.turnCheck)
+            {
+                player1Camera.enabled = false;
+                player2Camera.enabled = true;
+                bulletCamera.enabled = false;
+            }
         }
-
-        Vector3 center = new Vector3((xR + xL) / 2, transform.position.y, transform.position.z);
-        transform.position = center;
-        */
-
+        
     } // end void update
 
 } // end of CameraPan class

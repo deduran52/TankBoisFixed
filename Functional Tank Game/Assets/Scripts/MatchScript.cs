@@ -12,9 +12,10 @@ public class MatchScript : MonoBehaviour
     public Text timerText;
 
     /* Camera variables and objects */
-    public Camera camera1;
-    public Camera camera2;
-    public float waitTime;
+    //public Camera player1Camera;
+    //public Camera player2Camera;
+    //public Camera bulletCamera;
+    //public float waitTime;
 
     /* player1 timer variables */
     public float p1Time;
@@ -162,8 +163,8 @@ public class MatchScript : MonoBehaviour
 
                 if (matchTime < 0)
                 {
-                    player1.enabled = false;
-                    player2.enabled = false;
+                    //player1.enabled = false;
+                    //player2.enabled = false;
                     timerText.text = "0";
                     if (matchTime <= disableTimeText)
                     {
@@ -189,8 +190,8 @@ public class MatchScript : MonoBehaviour
             }
             else
             {
-                player1.enabled = false;
-                player2.enabled = false;
+                //player1.enabled = false;                                             // These enabled are destroying the object need to figure out how to
+                //player2.enabled = false;                                             // turn them off without them being destroyed.
                 if (player1.currentHealth <= 0 && player2.currentHealth > 0)
                 {
                     winText.text = "Player 2 Wins!";
@@ -225,8 +226,8 @@ public class MatchScript : MonoBehaviour
         if (player1.turnCheck == true && matchTime > 0 /*&& camera1.cameraCheck1 == true*/)
         {
 
-            camera1.enabled = true;
-            camera2.enabled = false;
+            //player1Camera.enabled = true;
+            //player2Camera.enabled = false;
 
             p2Time = player2.turnTime;
             player2.turnCheck = false;
@@ -246,8 +247,8 @@ public class MatchScript : MonoBehaviour
         if (player2.turnCheck == true && matchTime > 0 /*&& camera1.cameraCheck2 == true*/)
         {
 
-            camera1.enabled = false;
-            camera2.enabled = true;
+            //player1Camera.enabled = false;
+            //player2Camera.enabled = true;
 
             p1Time = player1.turnTime;
             player1.turnCheck = false;

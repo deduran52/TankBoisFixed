@@ -16,8 +16,8 @@ public class GroundBehavior : MonoBehaviour
     void Start()
     {
         //StartCoroutine("DoCheck");
-        Instantiate(Terrain1);
-        Instantiate(Terrain2);
+        Instantiate(Terrain1);                            // at the moment these are not being used due to the fact that there is nothing attached to these
+        Instantiate(Terrain2);                            // same as above
 
     }
 

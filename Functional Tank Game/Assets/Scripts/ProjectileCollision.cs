@@ -12,7 +12,7 @@ public class ProjectileCollision : MonoBehaviour
     /* Player Objects */
     PlayerTank1 player1;
     PlayerTank2 player2;
-    CameraPan camera1;
+    //CameraPan camera1;
 
     /* Delay timer */
     public float delayTimer;

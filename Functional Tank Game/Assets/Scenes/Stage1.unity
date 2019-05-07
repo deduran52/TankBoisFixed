@@ -448,9 +448,10 @@ GameObject:
   - component: {fileID: 1096784414}
   - component: {fileID: 1096784413}
   - component: {fileID: 1096784417}
+  - component: {fileID: 1096784418}
   m_Layer: 5
   m_Name: Canvas
-  m_TagString: Untagged
+  m_TagString: GameController
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -553,9 +554,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   matchTime: 100
   timerText: {fileID: 479583555}
-  camera1: {fileID: 1981835815}
-  camera2: {fileID: 877552194}
-  waitTime: 0
   p1Time: 0
   p1DisplayTime: 0
   Player1Timer: {fileID: 1945297203}
@@ -573,6 +571,26 @@ MonoBehaviour:
   disableTimeText: 0
   returnToTitle: -3
   animate: {fileID: 0}
+--- !u!114 &1096784418
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1096784412}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44088410c3e756241801b867ee837700, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player1Camera: {fileID: 1981835815}
+  player2Camera: {fileID: 877552194}
+  bulletCamera: {fileID: 1446275361}
+  cameraCheck1: 0
+  cameraCheck2: 0
+  baseTimer: 5
+  timer1: 0
+  timer2: 0
 --- !u!1 &1268749801
 GameObject:
   m_ObjectHideFlags: 0
@@ -632,7 +650,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1268749801}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -735,14 +753,13 @@ GameObject:
   - component: {fileID: 1446275362}
   - component: {fileID: 1446275361}
   - component: {fileID: 1446275360}
-  - component: {fileID: 1446275363}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!81 &1446275360
 AudioListener:
   m_ObjectHideFlags: 0
@@ -1241,6 +1258,28 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!1 &2144787634 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6792809823874683231, guid: 07815d868fa59254fb21733649df38c5,
+    type: 3}
+  m_PrefabInstance: {fileID: 975048689}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2144787635
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2144787634}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8fc1ad32656e88c4bb565ef45b9943ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Terrain1: {fileID: 0}
+  Terrain2: {fileID: 0}
+  delay: 0
+  determineSpawn: 0
 --- !u!1001 &3252970403407438404
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1439,7 +1478,7 @@ MonoBehaviour:
   startHealth: 100
   currentHealth: 0
   healthBar: {fileID: 0}
-  projectile: {fileID: 6432507606453776868, guid: 6e08b27c8e884934fa67fc6a6729024e,
+  projectile: {fileID: 5381893902967612273, guid: 6e08b27c8e884934fa67fc6a6729024e,
     type: 3}
   projectileEmitter: {fileID: 361447127}
   projectileSpeed: 250
@@ -1694,7 +1733,7 @@ MonoBehaviour:
   startHealth: 100
   currentHealth: 0
   healthBar: {fileID: 0}
-  projectile: {fileID: 6432507606453776868, guid: 6e08b27c8e884934fa67fc6a6729024e,
+  projectile: {fileID: 5381893902967612273, guid: 6e08b27c8e884934fa67fc6a6729024e,
     type: 3}
   projectileEmitter: {fileID: 1463802700}
   projectileSpeed: 250
