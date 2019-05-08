@@ -226,8 +226,8 @@ public class MatchScript : MonoBehaviour
         if (player1.turnCheck == true && matchTime > 0)
         {
 
-            player1Camera.enabled = true;
-            player2Camera.enabled = false;
+            //player1Camera.enabled = true;
+            //player2Camera.enabled = false;
 
             p2Time = player2.turnTime;
             player2.turnCheck = false;
@@ -247,8 +247,8 @@ public class MatchScript : MonoBehaviour
         if (player2.turnCheck == true && matchTime > 0)
         {
 
-            player1Camera.enabled = false;
-            player2Camera.enabled = true;
+            //player1Camera.enabled = false;
+            //player2Camera.enabled = true;
 
             p1Time = player1.turnTime;
             player1.turnCheck = false;

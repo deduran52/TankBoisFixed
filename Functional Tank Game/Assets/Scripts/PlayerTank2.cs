@@ -6,8 +6,13 @@ using UnityEngine.UI;
 public class PlayerTank2 : MonoBehaviour
 {
     /* Private Variables */
-    Transform target;
-    PlayerTank1 opponentScript;
+    //Transform target;
+    //PlayerTank1 opponentScript;
+
+    /* Player Healt */
+    public float startHealth = 100;
+    public float currentHealth;
+    public Image healthBar;
 
     /* Turn Variable */
     public bool turnCheck;
@@ -17,9 +22,6 @@ public class PlayerTank2 : MonoBehaviour
     /* Player Variables */
     public GameObject player;
     public float tankSpeed = 5.0f;
-    public float startHealth = 100;
-    public float currentHealth;
-    public Image healthBar;
 
     /* Projectile Variable */
     public Rigidbody2D projectile;
@@ -43,9 +45,10 @@ public class PlayerTank2 : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        target = GameObject.FindWithTag("PlayerTank1").transform;
-        opponentScript = GameObject.FindWithTag("PlayerTank1").GetComponent<PlayerTank1>();
+        //target = GameObject.FindWithTag("PlayerTank1").transform;
+        //opponentScript = GameObject.FindWithTag("PlayerTank1").GetComponent<PlayerTank1>();
 
+        /* Player Health */
         currentHealth = startHealth;
 
         isDestroyed = false;
@@ -170,7 +173,7 @@ public class PlayerTank2 : MonoBehaviour
         if (coll.gameObject.CompareTag("Bullet"))
         {
             currentHealth = currentHealth - bulletDamage;
-            //healthBar.setSize(currentHealth / 10);
+            healthBar.fillAmount = currentHealth / startHealth;
             if (currentHealth == 0)
                 Destroy(gameObject);
 
@@ -178,7 +181,7 @@ public class PlayerTank2 : MonoBehaviour
         else if (coll.gameObject.CompareTag("Explosion"))
         {
             currentHealth = currentHealth - explosionDamage;
-                                                                                                // Add health bar modifier here
+            healthBar.fillAmount = currentHealth / startHealth;
             if (currentHealth == 0)
             {
                 Destroy(gameObject);

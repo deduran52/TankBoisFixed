@@ -6,7 +6,9 @@ using UnityEngine;
 public class CameraPan : MonoBehaviour
 {
     /* Variable to dectect whos turn it is */
-    public GameObject Bullet;
+    public ProjectileCollision Bullet;
+    public PlayerTank1 player1;
+    public PlayerTank2 player2;
 
     /* Camera variables */
     public Camera player1Camera;
@@ -14,13 +16,13 @@ public class CameraPan : MonoBehaviour
     public Camera bulletCamera;
 
     /* Variables to get the position of the player objects */
-    public Transform tank1;
-    public Transform tank2;
+    //public Transform tank1;
+    //public Transform tank2;
 
     /* Variable to hold the position for the player objects and the bullet objects */
-    float xPosB;                // x position
-    float yPosB;                // y position
-    float zPosB;                // z position
+    float xPos;                // x position
+    float yPos;                // y position
+    float zPos;                // z position
 
     float xPos1;                // x position
     float yPos1;                // y position
@@ -49,6 +51,10 @@ public class CameraPan : MonoBehaviour
 
     void Start()
     {
+        /* PlayerTank objects */
+        player1 = GameObject.FindWithTag("PlayerTank1").GetComponent<PlayerTank1>();
+        player2 = GameObject.FindWithTag("PlayerTank2").GetComponent<PlayerTank2>();
+
         /* Instatiating variables to access the postitions of the tanks */
         //tank1 = GameObject.FindWithTag("PlayerTank1").transform;
         //tank2 = GameObject.FindWithTag("PlayerTank2").transform;
@@ -63,22 +69,22 @@ public class CameraPan : MonoBehaviour
 
     void Update()
     {
-        /* bullet location */
+        /* bullet location 
         xPosB = Bullet.transform.position.x;
         yPosB = Bullet.transform.position.y;
         zPosB = transform.position.z;
 
-        /* tank1 location */
+        /* tank1 location 
         xPos1 = tank1.transform.position.x + 5;
         yPos1 = 3;
         zPos1 = transform.position.z;
 
-        /* tank2 location */
+        /* tank2 location 
         xPos2 = tank2.transform.position.x + 5;
         yPos2 = 3;
         zPos2 = transform.position.z;
 
-        /* setting the cameras to the appropriate locations */
+        /* setting the cameras to the appropriate locations
         bulletCenter = new Vector3(xPosB, yPosB, zPosB);
         bulletCamera.transform.position = bulletCenter;
 
@@ -87,24 +93,24 @@ public class CameraPan : MonoBehaviour
 
         tank2Center = new Vector3(xPos2, yPos2, zPos2);
         player2Camera.transform.position = tank2Center;
-
+        */
 
 
         /* Need to up Date every scene since the bullet is not created until it is fired */
-        //Bullet = GameObject.FindWithTag("Bullet").GetComponent<ProjectileCollision>();         // Having a hard time determining wheather the object exist or not
+        Bullet = GameObject.FindWithTag("Bullet").GetComponent<ProjectileCollision>();         // Having a hard time determining wheather the object exist or not
 
         //---------------------------------------------------------------------------------------------------
 
 
         /* Changes camera to the projectile */
-        /*
+        
         if (Bullet.IsDestroyed == false)
         {
             bulletCamera.enabled = true;                             // Need to change the camera from enabled to something else that will determine
             player1Camera.enabled = false;                           // wheather the camera is on or not.
             player2Camera.enabled = false;                           // this line aslo needs to be changed.
 
-            /* Getting the position for the bullet
+            /* Getting the position for the bulletsd */
             xPos = Bullet.transform.position.x;
             yPos = Bullet.transform.position.y;
             zPos = transform.position.z;
@@ -151,7 +157,7 @@ public class CameraPan : MonoBehaviour
 
         else
         {
-            /* setting the player camera to true 
+            /* setting the player camera to true */
             if(player1.turnCheck)
             {
                 player1Camera.enabled = true;
@@ -159,7 +165,7 @@ public class CameraPan : MonoBehaviour
                 bulletCamera.enabled = false;
             }
 
-            /* setting the player camera to true 
+            /* setting the player camera to true */
             else if(player2.turnCheck)
             {
                 player1Camera.enabled = false;
@@ -167,7 +173,6 @@ public class CameraPan : MonoBehaviour
                 bulletCamera.enabled = false;
             }
         }
-        */
 
     } // end void update
 

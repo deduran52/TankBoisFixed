@@ -6,12 +6,13 @@ using UnityEngine.UI;
 public class PlayerTank1 : MonoBehaviour
 {
     /* Private Variables */
-    Transform target;
-    PlayerTank2 opponentScript;
+    //Transform target;
+    //PlayerTank2 opponentScript;
 
-    
-    public Transform bar;
-    public static float healthAmount = 1f;
+    /* Player Healt */
+    public float startHealth = 100;
+    public float currentHealth;
+    public Image healthBar;
 
     /* Turn Variable */
     public bool turnCheck;
@@ -20,8 +21,6 @@ public class PlayerTank1 : MonoBehaviour
     /* Player Variables */
     public GameObject player;
     public float tankSpeed = 5.0f;
-    public float startHealth = 100;
-    public float currentHealth;
 
     /* Projectile Variable */
     public Rigidbody2D projectile;
@@ -48,20 +47,14 @@ public class PlayerTank1 : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Transform bar = transform.Find("Bar");
-        healthAmount = 1;
-        target = GameObject.FindWithTag("PlayerTank2").transform;
-        opponentScript = GameObject.FindWithTag("PlayerTank2").GetComponent<PlayerTank2>();
-
+        /* Player Health */
         currentHealth = startHealth;
+
+        //target = GameObject.FindWithTag("PlayerTank2").transform;
+        //opponentScript = GameObject.FindWithTag("PlayerTank2").GetComponent<PlayerTank2>();
 
         isDestroyed = false;
 
-    }
-
-    public void setSize(float sizeNormalized)
-    {
-        bar.localScale = new Vector3(sizeNormalized, 1f);
     }
 
     // Update is called once per frame
@@ -165,10 +158,6 @@ public class PlayerTank1 : MonoBehaviour
                 projectileSpeed -= 25;
         }
 
-
-        setSize(healthAmount);
-
-
     }
 
     /* Damage Detection */
@@ -179,7 +168,7 @@ public class PlayerTank1 : MonoBehaviour
          * 
          * This may need to be changed to ground detection so that you can reset your position if you happen to fall on your side.
          * This will be a delayed action in which you would be able to do anything until the you are right side up again
-         * 
+         *
         if (coll.gameObject.CompareTag("Ground"))
         {
             isGrounded = true;
@@ -188,7 +177,7 @@ public class PlayerTank1 : MonoBehaviour
         if (coll.gameObject.CompareTag("Bullet"))
         {
             currentHealth = currentHealth - bulletDamage;
-            healthAmount -= 0.1f;                            // Need to get this working like today
+            healthBar.fillAmount = currentHealth / startHealth;
             if (currentHealth == 0)
             {
                 Destroy(gameObject);
@@ -198,8 +187,7 @@ public class PlayerTank1 : MonoBehaviour
         else if (coll.gameObject.CompareTag("Explosion"))
         {
             currentHealth = currentHealth - explosionDamage;
-            healthAmount -= 0.1f;
-                                                           // Need to add another health bar modifier here.
+            healthBar.fillAmount = currentHealth / startHealth;
             if(currentHealth == 0)
             {
                 Destroy(gameObject);

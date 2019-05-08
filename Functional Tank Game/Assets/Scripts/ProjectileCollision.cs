@@ -13,9 +13,9 @@ public class ProjectileCollision : MonoBehaviour
     /* Player Objects */
     PlayerTank1 player1;
     PlayerTank2 player2;
-    public Camera camera1;
-    public GameObject emitter1;
-    public GameObject emitter2;
+    //public Camera camera1;
+    //public GameObject emitter1;
+    //public GameObject emitter2;
 
     /* Delay timer */
     public float delayTimer;
@@ -51,7 +51,7 @@ public class ProjectileCollision : MonoBehaviour
         if (player1.firedProjectile == true)
         {
             IsDestroyed = false;
-            Instantiate(camera1, emitter1.transform.position, emitter1.transform.rotation);
+            //Instantiate(camera1, emitter1.transform.position, emitter1.transform.rotation);
             //player1.turnCheck = false;
             //player2.turnCheck = false;
             //delayTimer -= Time.deltaTime;
@@ -62,7 +62,7 @@ public class ProjectileCollision : MonoBehaviour
         if (player2.firedProjectile == true)
         {
             IsDestroyed = false;
-            Instantiate(camera1, emitter2.transform.position, emitter2.transform.rotation);
+            //Instantiate(camera1, emitter2.transform.position, emitter2.transform.rotation);
             //player1.turnCheck = false;
             //player2.turnCheck = false;
             //delayTimer -= Time.deltaTime;
@@ -74,22 +74,29 @@ public class ProjectileCollision : MonoBehaviour
     void OnCollisionEnter2D(Collision2D other)
     {
         Vector2 hitPosition = Vector2.zero;
-        if (other.gameObject.CompareTag("Ground"))
+        if (other.gameObject.CompareTag("Terrain"))
         {
-
             GameObject expl = Instantiate(explosion, transform.position, Quaternion.identity) as GameObject;
             Destroy(expl, 1); // delete the explosion after 1 seconds
             Destroy(gameObject, Impactdelay);
-            Destroy(camera1, cameraDelay);
+            //Destroy(camera1, cameraDelay);
             IsDestroyed = true;
             foreach (ContactPoint2D hit in other.contacts)
             {
                 hitPosition.x = hit.point.x;
                 hitPosition.y = hit.point.y;
                 TileDestructionLoop(hitPosition);
-
             }
+        }
 
+        else if (other.gameObject.CompareTag("Ground"))
+        {
+
+            GameObject expl = Instantiate(explosion, transform.position, Quaternion.identity) as GameObject;
+            Destroy(expl, 1); // delete the explosion after 1 seconds
+            Destroy(gameObject, Impactdelay);
+            //Destroy(camera1, cameraDelay);
+            IsDestroyed = true;
         }
 
         else if(other.gameObject.CompareTag("Wall"))
@@ -98,7 +105,7 @@ public class ProjectileCollision : MonoBehaviour
             GameObject expl = Instantiate(explosion, transform.position, Quaternion.identity) as GameObject;
             Destroy(expl, 1); // delete the explosion after 1 seconds
             Destroy(gameObject, Impactdelay);
-            Destroy(camera1, cameraDelay);
+            //Destroy(camera1, cameraDelay);
             IsDestroyed = true;
         }
 
@@ -107,7 +114,7 @@ public class ProjectileCollision : MonoBehaviour
             GameObject expl = Instantiate(explosion, transform.position, Quaternion.identity) as GameObject;
             Destroy(expl, 1); // delete the explosion after 1 seconds
             Destroy(gameObject, Impactdelay);
-            Destroy(camera1, cameraDelay);
+            //Destroy(camera1, cameraDelay);
             IsDestroyed = true;
         }
 
@@ -117,7 +124,7 @@ public class ProjectileCollision : MonoBehaviour
             GameObject expl = Instantiate(explosion, transform.position, Quaternion.identity) as GameObject;
             Destroy(expl, 1); // delete the explosion after 1 seconds
             Destroy(gameObject, Impactdelay);
-            Destroy(camera1, cameraDelay);
+            //Destroy(camera1, cameraDelay);
             IsDestroyed = true;
 
             
