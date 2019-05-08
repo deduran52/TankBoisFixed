@@ -497,7 +497,7 @@ PrefabInstance:
     - target: {fileID: 6792809823874683225, guid: 07815d868fa59254fb21733649df38c5,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 39.966
+      value: 29.957
       objectReference: {fileID: 0}
     - target: {fileID: 6792809823874683225, guid: 07815d868fa59254fb21733649df38c5,
         type: 3}
@@ -552,7 +552,7 @@ PrefabInstance:
     - target: {fileID: 6792809823874683225, guid: 07815d868fa59254fb21733649df38c5,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 119.89375
+      value: 100.0207
       objectReference: {fileID: 0}
     - target: {fileID: 6792809823874683172, guid: 07815d868fa59254fb21733649df38c5,
         type: 3}
@@ -733,7 +733,7 @@ PrefabInstance:
     - target: {fileID: 8121521489152513285, guid: d0a68ee42d4d66f4da152c9b4c5e5caf,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 88.75
+      value: 54.28
       objectReference: {fileID: 0}
     - target: {fileID: 8121521489152513285, guid: d0a68ee42d4d66f4da152c9b4c5e5caf,
         type: 3}
@@ -842,6 +842,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_WasSpriteAssigned
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8121521489155652504, guid: d0a68ee42d4d66f4da152c9b4c5e5caf,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 18.12
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d0a68ee42d4d66f4da152c9b4c5e5caf, type: 3}
@@ -1202,7 +1207,7 @@ PrefabInstance:
     - target: {fileID: 8495772936806013622, guid: c8e93408e0208c844a62ff0e2ee8c602,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 97.504
+      value: 77.48
       objectReference: {fileID: 0}
     - target: {fileID: 8495772936806013622, guid: c8e93408e0208c844a62ff0e2ee8c602,
         type: 3}
@@ -1539,7 +1544,7 @@ PrefabInstance:
     - target: {fileID: 3252970404094711386, guid: 7df48da5063689044be59318923f9041,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 78
+      value: 61.1
       objectReference: {fileID: 0}
     - target: {fileID: 3252970404094711386, guid: 7df48da5063689044be59318923f9041,
         type: 3}
@@ -1832,6 +1837,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Grid
       objectReference: {fileID: 0}
+    - target: {fileID: 7869014743161881988, guid: 77f47097f744a6246843d5c1e69f5012,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7869014743161881990, guid: 77f47097f744a6246843d5c1e69f5012,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1895,7 +1905,7 @@ PrefabInstance:
     - target: {fileID: 7869014744811189340, guid: 77f47097f744a6246843d5c1e69f5012,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7869014744811189337, guid: 77f47097f744a6246843d5c1e69f5012,
         type: 3}
@@ -1975,7 +1985,6 @@ MonoBehaviour:
   tankSpeed: 5
   startHealth: 100
   currentHealth: 0
-  healthBar: {fileID: 0}
   projectile: {fileID: 5381893902967612273, guid: 6e08b27c8e884934fa67fc6a6729024e,
     type: 3}
   projectileEmitter: {fileID: 1463802700}

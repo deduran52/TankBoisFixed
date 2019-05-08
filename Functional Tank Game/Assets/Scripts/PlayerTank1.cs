@@ -145,7 +145,7 @@ public class PlayerTank1 : MonoBehaviour
         {
             currentHealth = currentHealth - explosionDamage;
             healthAmount -= 0.1f;
-                                                                                    // Need to add another health bar modifier here.
+                                                           // Need to add another health bar modifier here.
             if(currentHealth == 0)
             {
                 Destroy(gameObject);
