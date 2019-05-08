@@ -9,6 +9,8 @@ public class PlayerTank1 : MonoBehaviour
     Transform target;
     PlayerTank2 opponentScript;
 
+    public static float healthAmount;
+
     /* Turn Variable */
     public bool turnCheck;
     public float turnTime = 10;
@@ -18,7 +20,6 @@ public class PlayerTank1 : MonoBehaviour
     public float tankSpeed = 5.0f;
     public float startHealth = 100;
     public float currentHealth;
-    public Image healthBar;
 
     /* Projectile Variable */
     public Rigidbody2D projectile;
@@ -45,6 +46,7 @@ public class PlayerTank1 : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        healthAmount = 1;
         target = GameObject.FindWithTag("PlayerTank2").transform;
         opponentScript = GameObject.FindWithTag("PlayerTank2").GetComponent<PlayerTank2>();
 
@@ -132,7 +134,7 @@ public class PlayerTank1 : MonoBehaviour
         if (coll.gameObject.CompareTag("Bullet"))
         {
             currentHealth = currentHealth - bulletDamage;
-            //healthBar.setSize(currentHealth / 10);                                 // Need to get this working like today
+            healthAmount -= 0.1f;                            // Need to get this working like today
             if (currentHealth == 0)
             {
                 Destroy(gameObject);
@@ -142,6 +144,7 @@ public class PlayerTank1 : MonoBehaviour
         else if (coll.gameObject.CompareTag("Explosion"))
         {
             currentHealth = currentHealth - explosionDamage;
+            healthAmount -= 0.1f;
                                                                                     // Need to add another health bar modifier here.
             if(currentHealth == 0)
             {

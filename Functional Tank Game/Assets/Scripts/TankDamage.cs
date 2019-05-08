@@ -36,8 +36,7 @@ public class TankDamage : MonoBehaviour
         }
         else if (collision.gameObject.CompareTag("Bullet"))
         {
-            currentHealth = currentHealth - 10;
-            healthBar.setSize(currentHealth/10 );
+           //healthBar.setSize(currentHealth/10 );
             if (currentHealth <= 0)
                 Destroy(gameObject);
 
