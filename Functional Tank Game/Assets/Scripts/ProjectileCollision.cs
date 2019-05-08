@@ -29,7 +29,7 @@ public class ProjectileCollision : MonoBehaviour
     {
         player1 = GameObject.FindWithTag("PlayerTank1").GetComponent<PlayerTank1>();
         player2 = GameObject.FindWithTag("PlayerTank2").GetComponent<PlayerTank2>();
-        camera1 = GameObject.FindWithTag("MainCamera").GetComponent<CameraPan>();
+        //camera1 = GameObject.FindWithTag("MainCamera").GetComponent<CameraPan>();
         tilemap = GameObject.FindWithTag("Ground").GetComponent<Tilemap>();
 
         IsDestroyed = true;
