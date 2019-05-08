@@ -40,7 +40,7 @@ public class PlayerTank2 : MonoBehaviour
     public bool isDestroyed;
 
     /* Reset Variables */
-    Vector3 reset = new Vector3(0, 0, 0);
+    Vector3 reset = new Vector3(0, 0, 1);
 
     // Start is called before the first frame update
     void Start()

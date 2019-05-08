@@ -69,6 +69,40 @@ public class CameraPan : MonoBehaviour
 
     void Update()
     {
+
+        if(player1.turnCheck)
+        {
+            player1Camera.enabled = true;
+            player2Camera.enabled = false;
+            bulletCamera = false;
+            if(player)
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         /* bullet location 
         xPosB = Bullet.transform.position.x;
         yPosB = Bullet.transform.position.y;
@@ -97,12 +131,12 @@ public class CameraPan : MonoBehaviour
 
 
         /* Need to up Date every scene since the bullet is not created until it is fired */
-        Bullet = GameObject.FindWithTag("Bullet").GetComponent<ProjectileCollision>();         // Having a hard time determining wheather the object exist or not
+        //Bullet = GameObject.FindWithTag("Bullet").GetComponent<ProjectileCollision>();         // Having a hard time determining wheather the object exist or not
 
         //---------------------------------------------------------------------------------------------------
 
 
-        /* Changes camera to the projectile */
+        /* Changes camera to the projectile 
         
         if (Bullet.IsDestroyed == false)
         {
@@ -110,7 +144,7 @@ public class CameraPan : MonoBehaviour
             player1Camera.enabled = false;                           // wheather the camera is on or not.
             player2Camera.enabled = false;                           // this line aslo needs to be changed.
 
-            /* Getting the position for the bulletsd */
+            /* Getting the position for the bulletsd 
             xPos = Bullet.transform.position.x;
             yPos = Bullet.transform.position.y;
             zPos = transform.position.z;
@@ -157,7 +191,7 @@ public class CameraPan : MonoBehaviour
 
         else
         {
-            /* setting the player camera to true */
+            /* setting the player camera to true 
             if(player1.turnCheck)
             {
                 player1Camera.enabled = true;
@@ -165,7 +199,7 @@ public class CameraPan : MonoBehaviour
                 bulletCamera.enabled = false;
             }
 
-            /* setting the player camera to true */
+            /* setting the player camera to true 
             else if(player2.turnCheck)
             {
                 player1Camera.enabled = false;
@@ -173,7 +207,7 @@ public class CameraPan : MonoBehaviour
                 bulletCamera.enabled = false;
             }
         }
-
+        */
     } // end void update
 
 } // end of CameraPan class

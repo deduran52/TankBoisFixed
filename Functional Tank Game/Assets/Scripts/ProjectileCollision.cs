@@ -74,7 +74,7 @@ public class ProjectileCollision : MonoBehaviour
     void OnCollisionEnter2D(Collision2D other)
     {
         Vector2 hitPosition = Vector2.zero;
-        if (other.gameObject.CompareTag("Terrain"))
+        if (other.gameObject.CompareTag("Ground"))
         {
             GameObject expl = Instantiate(explosion, transform.position, Quaternion.identity) as GameObject;
             Destroy(expl, 1); // delete the explosion after 1 seconds
@@ -85,11 +85,12 @@ public class ProjectileCollision : MonoBehaviour
             {
                 hitPosition.x = hit.point.x;
                 hitPosition.y = hit.point.y;
-                TileDestructionLoop(hitPosition);
+                tilemap.SetTile(tilemap.WorldToCell(hitPosition), null);
+                //TileDestructionLoop(hitPosition);
             }
         }
 
-        else if (other.gameObject.CompareTag("Ground"))
+        else if (other.gameObject.CompareTag("Terrain"))
         {
 
             GameObject expl = Instantiate(explosion, transform.position, Quaternion.identity) as GameObject;
@@ -135,18 +136,18 @@ public class ProjectileCollision : MonoBehaviour
 
     void TileDestructionLoop (Vector3 impactLocation)
     {
-            impactLocation.y = impactLocation.y + (float).3;
-            float StartVAR = impactLocation.x = impactLocation.x - (float).3;
+            impactLocation.y = impactLocation.y + (float).5;
+            float StartVAR = impactLocation.x = impactLocation.x - (float).5;
             tilemap.SetTile(tilemap.WorldToCell(impactLocation), null);
         for (int i = 0; i < 6; i++)
         {
             for (int n = 0; n < 6; n++)
             {
-                impactLocation.x = impactLocation.x + (float).1;
+                impactLocation.x = impactLocation.x + (float).25;
                 tilemap.SetTile(tilemap.WorldToCell(impactLocation), null);
             }
 
-            impactLocation.y = impactLocation.y - (float).1;
+            impactLocation.y = impactLocation.y - (float).25;
             impactLocation.x = StartVAR;
             tilemap.SetTile(tilemap.WorldToCell(impactLocation), null);
         }
