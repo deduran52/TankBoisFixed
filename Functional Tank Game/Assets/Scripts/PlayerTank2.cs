@@ -66,6 +66,15 @@ public class PlayerTank2 : MonoBehaviour
             transform.position += Vector3.right * tankSpeed * Time.deltaTime;
         }
 
+        if (Input.GetKey(KeyCode.Joystick3Button0) && turnCheck)
+        {
+            transform.position += Vector3.left * tankSpeed * Time.deltaTime;
+        }
+        else if (Input.GetKey(KeyCode.Joystick3Button2) && turnCheck)
+        {
+            transform.position += Vector3.right * tankSpeed * Time.deltaTime;
+        }
+
         /* Reset Key control */
         /*
          if(Input.GetKey(KeyCode.R) && turnCheck && !resetUse)
@@ -92,8 +101,32 @@ public class PlayerTank2 : MonoBehaviour
             }
         }
 
+        else if (Input.GetKey(KeyCode.Joystick3Button1) && turnCheck)
+        {
+            if (turretAngle > 0)
+            {
+                turretRotation.transform.Rotate(0, 0, 1);
+                --turretAngle;
+            }
+        }
+        else if (Input.GetKey(KeyCode.Joystick3Button3) && turnCheck)
+        {
+            if (turretAngle <= 180)
+            {
+                turretRotation.transform.Rotate(0, 0, -1);
+                ++turretAngle;
+            }
+        }
+
         /* Cannon Controls */
         else if (Input.GetKeyDown(KeyCode.Space) && turnCheck)
+        {
+            Rigidbody2D iP = Instantiate(projectile, projectileEmitter.transform.position, projectileEmitter.transform.rotation) as Rigidbody2D;
+            iP.AddForce(-projectileEmitter.transform.right * projectileSpeed);
+            firedProjectile = true;
+        }
+
+        else if (Input.GetKeyDown(KeyCode.Joystick3Button7)) //&& turnCheck)
         {
             Rigidbody2D iP = Instantiate(projectile, projectileEmitter.transform.position, projectileEmitter.transform.rotation) as Rigidbody2D;
             iP.AddForce(-projectileEmitter.transform.right * projectileSpeed);
@@ -105,6 +138,17 @@ public class PlayerTank2 : MonoBehaviour
                 projectileSpeed += 25;
         }
         else if (Input.GetKeyDown(KeyCode.DownArrow) && turnCheck)
+        {
+            if (projectileSpeed > 0)
+                projectileSpeed -= 25;
+        }
+
+        else if (Input.GetKeyDown(KeyCode.Joystick3Button5) && turnCheck)
+        {
+            if (projectileSpeed < 1000)
+                projectileSpeed += 25;
+        }
+        else if (Input.GetKeyDown(KeyCode.Joystick3Button4) && turnCheck)
         {
             if (projectileSpeed > 0)
                 projectileSpeed -= 25;

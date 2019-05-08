@@ -9,7 +9,9 @@ public class PlayerTank1 : MonoBehaviour
     Transform target;
     PlayerTank2 opponentScript;
 
-    public static float healthAmount;
+    
+    public Transform bar;
+    public static float healthAmount = 1f;
 
     /* Turn Variable */
     public bool turnCheck;
@@ -46,6 +48,7 @@ public class PlayerTank1 : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Transform bar = transform.Find("Bar");
         healthAmount = 1;
         target = GameObject.FindWithTag("PlayerTank2").transform;
         opponentScript = GameObject.FindWithTag("PlayerTank2").GetComponent<PlayerTank2>();
@@ -54,6 +57,11 @@ public class PlayerTank1 : MonoBehaviour
 
         isDestroyed = false;
 
+    }
+
+    public void setSize(float sizeNormalized)
+    {
+        bar.localScale = new Vector3(sizeNormalized, 1f);
     }
 
     // Update is called once per frame
@@ -66,6 +74,15 @@ public class PlayerTank1 : MonoBehaviour
             transform.position += Vector3.left * tankSpeed * Time.deltaTime;
         }
         else if (Input.GetKey(KeyCode.D) && turnCheck)
+        {
+            transform.position += Vector3.right * tankSpeed * Time.deltaTime;
+        }
+
+        if (Input.GetKey(KeyCode.Joystick2Button0) && turnCheck)
+        {
+            transform.position += Vector3.left * tankSpeed * Time.deltaTime;
+        }
+        else if (Input.GetKey(KeyCode.Joystick2Button2) && turnCheck)
         {
             transform.position += Vector3.right * tankSpeed * Time.deltaTime;
         }
@@ -96,6 +113,23 @@ public class PlayerTank1 : MonoBehaviour
             }
         }
 
+        else if (Input.GetKey(KeyCode.Joystick2Button3) && turnCheck)
+        {
+            if (turretAngle <= 180)
+            {
+                turretRotation.transform.Rotate(0, 0, 1);
+                ++turretAngle;
+            }
+        }
+        else if (Input.GetKey(KeyCode.Joystick2Button1) && turnCheck)
+        {
+            if (turretAngle > 0)
+            {
+                turretRotation.transform.Rotate(0, 0, -1);
+                --turretAngle;
+            }
+        }
+
         /* Cannon Controls */
         else if (Input.GetKeyDown(KeyCode.Space) && turnCheck)
         {
@@ -103,6 +137,14 @@ public class PlayerTank1 : MonoBehaviour
             iP.AddForce(projectileEmitter.transform.right * projectileSpeed);
             firedProjectile = true;
         }
+
+        else if (Input.GetKeyDown(KeyCode.Joystick2Button7)) //&& turnCheck)
+        {
+            Rigidbody2D iP = Instantiate(projectile, projectileEmitter.transform.position, projectileEmitter.transform.rotation) as Rigidbody2D;
+            iP.AddForce(projectileEmitter.transform.right * projectileSpeed);
+            firedProjectile = true;
+        }
+
         else if (Input.GetKeyDown(KeyCode.UpArrow) && turnCheck)
         {
             if (projectileSpeed < 1000)
@@ -113,8 +155,22 @@ public class PlayerTank1 : MonoBehaviour
             if (projectileSpeed > 0)
                 projectileSpeed -= 25;
         }
-        
-        
+
+        else if (Input.GetKeyDown(KeyCode.Joystick2Button5) && turnCheck)
+        {
+            if (projectileSpeed < 1000)
+                projectileSpeed += 25;
+        }
+        else if (Input.GetKeyDown(KeyCode.Joystick2Button4) && turnCheck)
+        {
+            if (projectileSpeed > 0)
+                projectileSpeed -= 25;
+        }
+
+
+        setSize(healthAmount);
+
+
     }
 
     /* Damage Detection */
