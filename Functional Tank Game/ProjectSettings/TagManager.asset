@@ -12,6 +12,8 @@ TagManager:
   - PlayerTank1
   - PlayerTank2
   - tilemap
+  - Explosion
+  - BulletCamera
   layers:
   - Default
   - TransparentFX

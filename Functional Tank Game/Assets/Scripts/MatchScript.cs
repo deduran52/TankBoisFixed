@@ -12,10 +12,9 @@ public class MatchScript : MonoBehaviour
     public Text timerText;
 
     /* Camera variables and objects */
-    //public Camera player1Camera;
-    //public Camera player2Camera;
-    //public Camera bulletCamera;
-    //public float waitTime;
+    public Camera player1Camera;
+    public Camera player2Camera;
+    Camera bulletCamera;
 
     /* player1 timer variables */
     public float p1Time;
@@ -95,6 +94,7 @@ public class MatchScript : MonoBehaviour
     {
         /* This is detecting if there is a bullet object in the game at the moment */
         //bullet = GameObject.FindWithTag("Bullet").GetComponent<ProjectileCollision>();
+        //bulletCamera = GameObject.FindWithTag("bulletCamera").GetComponent<Camera>();
 
         //-------------------------------------------------------------------------------------------------------------------
 
@@ -223,11 +223,11 @@ public class MatchScript : MonoBehaviour
             player1.turnCheck = true;
         }
 
-        if (player1.turnCheck == true && matchTime > 0 /*&& camera1.cameraCheck1 == true*/)
+        if (player1.turnCheck == true && matchTime > 0)
         {
 
-            //player1Camera.enabled = true;
-            //player2Camera.enabled = false;
+            player1Camera.enabled = true;
+            player2Camera.enabled = false;
 
             p2Time = player2.turnTime;
             player2.turnCheck = false;
@@ -244,11 +244,11 @@ public class MatchScript : MonoBehaviour
             }
         }
 
-        if (player2.turnCheck == true && matchTime > 0 /*&& camera1.cameraCheck2 == true*/)
+        if (player2.turnCheck == true && matchTime > 0)
         {
 
-            //player1Camera.enabled = false;
-            //player2Camera.enabled = true;
+            player1Camera.enabled = false;
+            player2Camera.enabled = true;
 
             p1Time = player1.turnTime;
             player1.turnCheck = false;
@@ -275,47 +275,4 @@ public class MatchScript : MonoBehaviour
 
     } // end update
 
-    /*
-    void turnDetermine(PlayerTank1 player1, PlayerTank2 player2)
-    {
-        if (player1.turnCheck == false && player2.turnCheck == false)
-        {
-            player1.turnCheck = true;
-        }
-        else if (player1.turnCheck == true)
-        {
-            player2.turnCheck = false;
-            if (player1.firedProjectile == true)
-            {
-                player1.turnCheck = false;
-                player2.turnCheck = true;
-            }
-            else if (player1.movementComplete == true)
-            {
-                player1.turnCheck = false;
-                player2.turnCheck = true;
-            }
-        }
-        else if (player2.turnCheck == true)
-        {
-            player1.turnCheck = false;
-            if (player2.firedProjectile == true)
-            {
-                player1.turnCheck = true;
-                player2.turnCheck = false;
-            }
-            else if (player2.movementComplete == true)
-            {
-                player1.turnCheck = true;
-                player2.turnCheck = false;
-            }
-        }
-        else if (matchTime == 0)
-        {
-            player1.turnCheck = false;
-            player2.turnCheck = false;
-        }
-
-    } // end turnDetermine
-    */
 } // end class

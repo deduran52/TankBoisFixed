@@ -43,7 +43,7 @@ public class PlayerTank1 : MonoBehaviour
     public GameObject explosion;
 
     /* Reset Variables */
-    //public bool resetUse;                                                            // Need to get this uncommented one the function is working
+    Vector3 reset = new Vector3(0, 0, 0);
 
     // Start is called before the first frame update
     void Start()
@@ -88,12 +88,10 @@ public class PlayerTank1 : MonoBehaviour
         }
 
         /* Reset Key control */
-        /*
-         if(Input.GetKey(KeyCode.R) && turnCheck && !resetUse)
+         if(Input.GetKey(KeyCode.R) && turnCheck)
          {
-             // reset the position back to original as in back to a upright position.
+            transform.rotation = Quaternion.Euler(reset);
          }
-         */
 
         /* Turret Controls */
         else if (Input.GetKey(KeyCode.LeftArrow) && turnCheck)
